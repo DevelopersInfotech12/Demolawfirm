@@ -80,7 +80,7 @@ const Navbar = () => {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-6">
               <Link href="/contactus" className="group">
-                <button className="bg-[#C9A84C] hover:bg-[#B8973E] text-[#0D0B08] px-5 py-3 text-xs font-semibold tracking-[0.15em] transition-all duration-200 flex flex-col items-center rounded-sm">
+                <button className="bg-[#C9A84C] hover:bg-[#B8973E] text-[#0D0B08] px-5 py-1 text-xs font-semibold tracking-[0.15em] transition-all duration-200 flex flex-col items-center rounded-sm">
                   GET CONSULTATION
                   <span className="text-[13px] font-medium mt-0.5 tracking-wider">
                     +91-0000000001
