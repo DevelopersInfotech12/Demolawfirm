@@ -1,196 +1,145 @@
+"use client";
+
 import React, { useState } from 'react';
-import { ChevronDown, Scale, HelpCircle, MessageCircle, Phone } from 'lucide-react';
+import { ChevronDown, Scale, MessageCircle, Phone } from 'lucide-react';
 
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
- const faqs = [
-  {
-    question: "What types of legal services do you provide?",
-    answer: "Our firm offers a wide range of legal services including corporate law, commercial litigation, banking law, and legal advisory. We assist individuals, startups, and enterprises with tailored legal solutions."
-  },
-  {
-    question: "How much do legal consultations cost?",
-    answer: "We offer an initial consultation to understand your legal requirements. Fees vary depending on the complexity and scope of the matter. Our pricing is transparent with no hidden charges."
-  },
-  {
-    question: "How long does it take to resolve a legal case?",
-    answer: "The timeline depends on the nature of the case, legal procedures, and court schedules. Some matters may be resolved quickly, while others can take longer. We provide an estimated timeline after evaluating your case."
-  },
-  {
-    question: "What should I bring to my first consultation?",
-    answer: "Please bring all relevant documents such as contracts, agreements, notices, identification, and any communication related to your case. This helps us understand your situation better."
-  }
-];
+  const faqs = [
+    {
+      question: "What types of legal services do you provide?",
+      answer: "Our firm offers a wide range of legal services including corporate law, commercial litigation, banking law, and legal advisory. We assist individuals, startups, and enterprises with tailored legal solutions."
+    },
+    {
+      question: "How much do legal consultations cost?",
+      answer: "We offer an initial consultation to understand your legal requirements. Fees vary depending on the complexity and scope of the matter. Our pricing is transparent with no hidden charges."
+    },
+    {
+      question: "How long does it take to resolve a legal case?",
+      answer: "The timeline depends on the nature of the case, legal procedures, and court schedules. Some matters may be resolved quickly, while others can take longer. We provide an estimated timeline after evaluating your case."
+    },
+    {
+      question: "What should I bring to my first consultation?",
+      answer: "Please bring all relevant documents such as contracts, agreements, notices, identification, and any communication related to your case. This helps us understand your situation better."
+    }
+  ];
 
   const toggleFaq = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section style={{ backgroundColor: "#0D0B08", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 48px" }}>
-
+    <section className="bg-[#0D0B08] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "72px" }}>
-          <p style={{ color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", fontFamily: "Arial, sans-serif", marginBottom: "20px" }}>
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-[#C9A84C] text-xs md:text-[13px] tracking-[0.25em] font-medium mb-6">
             — GET YOUR ANSWERS
           </p>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "32px", marginBottom: "16px" }}>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "160px" }}></div>
-            <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: "300", color: "#E8E0D0", margin: 0 }}>
-              Frequently Asked{" "}
-              <span style={{ color: "#C9A84C", fontStyle: "italic" }}>Questions</span>
+          
+          <div className="flex items-center justify-center gap-6 mb-4">
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[160px]" />
+            <h2 className="text-[#E8E0D0] font-light text-[clamp(32px,5.5vw,48px)] leading-tight">
+              Frequently Asked <span className="text-[#C9A84C] italic">Questions</span>
             </h2>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "160px" }}></div>
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[160px]" />
           </div>
-          <p style={{ color: "#8A7A5A", fontSize: "14px", maxWidth: "480px", margin: "0 auto", lineHeight: "1.7", fontFamily: "Georgia, serif", fontStyle: "italic" }}>
+
+          <p className="text-[#8A7A5A] text-[15px] max-w-lg mx-auto leading-relaxed font-serif italic">
             Everything you need to know about our legal services, processes, and how we can protect your interests.
           </p>
         </div>
 
-        {/* Main Content - Two Column */}
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 3fr", gap: "80px", alignItems: "start" }}>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Sidebar - Contact Box */}
+          <div className="lg:col-span-5 lg:sticky lg:top-8">
+            <div className="border border-[#2A2518] bg-[#13110D] p-8 md:p-10">
+              {/* Gold Accent */}
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-8" />
 
-          {/* Left Sidebar */}
-          <div style={{ position: "sticky", top: "32px" }}>
-            <div style={{ border: "1px solid #2A2518", backgroundColor: "#13110D", padding: "40px" }}>
-              {/* Gold corner */}
-              <div style={{ width: "32px", height: "2px", backgroundColor: "#C9A84C", marginBottom: "24px" }}></div>
-
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", marginBottom: "24px" }}>
-                <div style={{ width: "44px", height: "44px", border: "1px solid #2A2518", display: "flex", alignItems: "center", justifyContent: "center", color: "#C9A84C", flexShrink: 0 }}>
-                  <MessageCircle size={18} />
+              <div className="flex items-start gap-5 mb-8">
+                <div className="w-12 h-12 border border-[#2A2518] flex items-center justify-center text-[#C9A84C] flex-shrink-0">
+                  <MessageCircle size={22} />
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: "Georgia, serif", fontSize: "20px", fontWeight: "300", color: "#E8E0D0", margin: "0 0 4px", fontStyle: "italic" }}>Need Legal Advice?</h3>
-                  <p style={{ color: "#5A4A30", fontSize: "11px", letterSpacing: "0.1em", fontFamily: "Arial, sans-serif", margin: 0 }}>EXPERT GUIDANCE AWAITS</p>
+                  <h3 className="text-[#E8E0D0] text-2xl font-light italic">Need Legal Advice?</h3>
+                  <p className="text-[#5A4A30] text-xs tracking-widest mt-1">EXPERT GUIDANCE AWAITS</p>
                 </div>
               </div>
 
-              <p style={{ color: "#5A4A30", fontSize: "13px", lineHeight: "1.8", fontFamily: "Georgia, serif", marginBottom: "32px" }}>
+              <p className="text-[#5A4A30] text-[15px] leading-relaxed font-serif mb-10">
                 Can't find what you're looking for? Our experienced legal team is ready to provide personalized consultation tailored to your specific needs.
               </p>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                <button style={{
-                  backgroundColor: "#C9A84C",
-                  color: "#0D0B08",
-                  padding: "14px 24px",
-                  fontSize: "11px",
-                  letterSpacing: "0.15em",
-                  fontFamily: "Arial, sans-serif",
-                  fontWeight: "600",
-                  border: "none",
-                  cursor: "pointer",
-                  width: "100%",
-                }}>
+              <div className="space-y-4">
+                <button className="w-full bg-[#C9A84C] hover:bg-[#B8973E] text-[#0D0B08] py-4 text-xs tracking-[0.15em] font-semibold transition-all">
                   SCHEDULE CONSULTATION
                 </button>
-                <button style={{
-                  backgroundColor: "transparent",
-                  color: "#8A7A5A",
-                  padding: "14px 24px",
-                  fontSize: "11px",
-                  letterSpacing: "0.1em",
-                  fontFamily: "Arial, sans-serif",
-                  border: "1px solid #2A2518",
-                  cursor: "pointer",
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                }}>
-                  <Phone size={12} />
-                  +91-0000000001
+                
+                <button 
+                  onClick={() => window.location.href = 'tel:+910000000001'}
+                  className="w-full border border-[#2A2518] hover:border-[#C9A84C] text-[#8A7A5A] hover:text-[#C9A84C] py-4 flex items-center justify-center gap-3 transition-all"
+                >
+                  <Phone size={18} />
+                  <span>+91-0000000001</span>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* FAQ List */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px", backgroundColor: "#2A2518" }}>
-            {faqs.map((faq, index) => (
-              <div key={index} style={{ backgroundColor: "#0D0B08" }}>
-                <button
-                  onClick={() => toggleFaq(index)}
-                  style={{
-                    width: "100%",
-                    padding: "28px 32px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "20px",
-                    background: "transparent",
-                    border: "none",
-                    cursor: "pointer",
-                    textAlign: "left",
-                    transition: "background-color 0.2s",
-                    backgroundColor: openIndex === index ? "#13110D" : "transparent",
-                  }}
-                >
-                  {/* Icon */}
-                  <div style={{
-                    width: "36px",
-                    height: "36px",
-                    border: "1px solid",
-                    borderColor: openIndex === index ? "#C9A84C" : "#2A2518",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: openIndex === index ? "#C9A84C" : "#3A3020",
-                    flexShrink: 0,
-                    transition: "all 0.2s",
-                  }}>
-                    <Scale size={14} />
-                  </div>
+          {/* FAQ Accordion */}
+          <div className="lg:col-span-7">
+            <div className="space-y-px bg-[#2A2518]">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-[#0D0B08]">
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full px-6 md:px-10 py-7 md:py-8 flex items-center gap-6 text-left group hover:bg-[#13110D] transition-all"
+                  >
+                    {/* Icon */}
+                    <div className={`w-10 h-10 md:w-11 md:h-11 border flex items-center justify-center flex-shrink-0 transition-all
+                      ${openIndex === index 
+                        ? 'border-[#C9A84C] text-[#C9A84C]' 
+                        : 'border-[#2A2518] text-[#3A3020] group-hover:border-[#C9A84C]/60'}`}
+                    >
+                      <Scale size={18} />
+                    </div>
 
-                  <h3 style={{
-                    fontFamily: "Georgia, serif",
-                    fontSize: "15px",
-                    fontWeight: "300",
-                    color: openIndex === index ? "#E8E0D0" : "#8A7A5A",
-                    margin: 0,
-                    flex: 1,
-                    lineHeight: "1.5",
-                    transition: "color 0.2s",
-                  }}>
-                    {faq.question}
-                  </h3>
+                    {/* Question */}
+                    <h3 className={`flex-1 text-[15.5px] md:text-[16.5px] leading-tight font-light transition-colors
+                      ${openIndex === index ? 'text-[#E8E0D0]' : 'text-[#8A7A5A]'}`}>
+                      {faq.question}
+                    </h3>
 
-                  <div style={{
-                    width: "28px",
-                    height: "28px",
-                    border: "1px solid",
-                    borderColor: openIndex === index ? "#C9A84C" : "#2A2518",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: openIndex === index ? "#C9A84C" : "#3A3020",
-                    flexShrink: 0,
-                    transition: "all 0.2s",
-                    transform: openIndex === index ? "rotate(180deg)" : "rotate(0deg)",
-                  }}>
-                    <ChevronDown size={14} />
-                  </div>
-                </button>
+                    {/* Chevron */}
+                    <div className={`w-8 h-8 border flex items-center justify-center transition-all duration-300
+                      ${openIndex === index 
+                        ? 'border-[#C9A84C] text-[#C9A84C] rotate-180' 
+                        : 'border-[#2A2518] text-[#3A3020] group-hover:border-[#C9A84C]/60'}`}
+                    >
+                      <ChevronDown size={16} />
+                    </div>
+                  </button>
 
-                {/* Answer */}
-                <div style={{
-                  maxHeight: openIndex === index ? "300px" : "0",
-                  overflow: "hidden",
-                  transition: "max-height 0.4s ease",
-                  backgroundColor: "#13110D",
-                }}>
-                  <div style={{ padding: "0 32px 28px 88px" }}>
-                    <div style={{ height: "1px", backgroundColor: "#2A2518", marginBottom: "20px" }}></div>
-                    <p style={{ color: "#5A4A30", fontSize: "14px", lineHeight: "1.8", fontFamily: "Georgia, serif", fontStyle: "italic", margin: 0 }}>
-                      {faq.answer}
-                    </p>
+                  {/* Answer */}
+                  <div 
+                    className={`overflow-hidden transition-all duration-400 bg-[#13110D]
+                      ${openIndex === index ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <div className="px-6 md:px-10 pb-8 md:pb-10 pt-2">
+                      <div className="h-px bg-[#2A2518] mb-6" />
+                      <p className="text-[#5A4A30] text-[15px] leading-relaxed font-serif italic">
+                        {faq.answer}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

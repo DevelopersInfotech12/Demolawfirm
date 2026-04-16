@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { Scale, Award, Target, Users } from 'lucide-react';
 
@@ -10,86 +12,80 @@ const WhyChooseUs = () => {
 
   const features = [
     {
-      icon: <Award size={20} />,
+      icon: <Award size={22} />,
       title: "Best Law Practices",
-      description: "At our firm, we combine unparalleled expertise with unwavering dedication, ensuring comprehensive legal solutions tailored to each client's unique needs."
+      description: "We combine unparalleled expertise with unwavering dedication, delivering comprehensive legal solutions tailored to each client's unique needs."
     },
     {
-      icon: <Scale size={20} />,
+      icon: <Scale size={22} />,
       title: "Efficiency & Trust",
-      description: "Our firm's integrity is the cornerstone of our practice, built on a legacy of trustworthiness, transparency, and steadfast reliability."
+      description: "Our integrity is the cornerstone of our practice — built on transparency, trustworthiness, and steadfast reliability."
     },
     {
-      icon: <Target size={20} />,
+      icon: <Target size={22} />,
       title: "Results You Deserve",
-      description: "Our firm consistently achieves impactful results through a potent combination of strategic acumen and legal prowess, securing favorable outcomes."
+      description: "We consistently achieve impactful results through strategic acumen and sharp legal prowess."
     },
     {
-      icon: <Users size={20} />,
+      icon: <Users size={22} />,
       title: "Client-Centered Approach",
-      description: "We place our clients at the heart of everything we do, offering personalized guidance, clear communication, and unwavering support at every stage."
+      description: "Clients are at the heart of everything we do — offering personalized guidance and unwavering support."
     }
   ];
 
   return (
-    <section style={{ backgroundColor: "#0D0B08", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 48px" }}>
-
+    <section className="bg-[#0D0B08] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "72px" }}>
-          <p style={{ color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", fontFamily: "Arial, sans-serif", marginBottom: "20px" }}>
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-[#C9A84C] text-xs md:text-[13px] tracking-[0.25em] font-medium mb-6">
             — OUR COMMITMENT
           </p>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "32px", marginBottom: "16px" }}>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "160px" }}></div>
-            <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: "300", color: "#E8E0D0", margin: 0 }}>
-              Why Choose{" "}
-              <span style={{ color: "#C9A84C", fontStyle: "italic" }}>Us</span>
+          
+          <div className="flex items-center justify-center gap-6 mb-4">
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[160px]" />
+            <h2 className="text-[#E8E0D0] font-light text-[clamp(32px,5.5vw,48px)] leading-tight">
+              Why Choose <span className="text-[#C9A84C] italic">Us</span>
             </h2>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "160px" }}></div>
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[160px]" />
           </div>
-          <p style={{ color: "#5A4A30", fontSize: "15px", fontFamily: "Georgia, serif", fontStyle: "italic" }}>
-            Legal Excellence
-          </p>
-          <p style={{ color: "#8A7A5A", fontSize: "14px", maxWidth: "480px", margin: "12px auto 0", lineHeight: "1.7", fontFamily: "Georgia, serif" }}>
+
+          <p className="text-[#5A4A30] text-lg italic font-serif">Legal Excellence</p>
+          <p className="text-[#8A7A5A] text-[15px] max-w-md mx-auto mt-4 leading-relaxed">
             Experience the difference that comes with choosing a law firm dedicated to excellence, integrity, and results.
           </p>
         </div>
 
-        {/* Main Content Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }}>
-
-          {/* Left - Features */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+        {/* Main Content - Responsive Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          
+          {/* Left - Features List */}
+          <div className="space-y-10 md:space-y-12">
             {features.map((feature, index) => (
               <div
                 key={index}
-                style={{ display: "flex", gap: "24px", alignItems: "flex-start", opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(-20px)", transition: `all 0.6s ease ${index * 0.15}s` }}
+                className={`flex gap-6 transition-all duration-700 ${
+                  isVisible 
+                    ? 'opacity-100 translate-x-0' 
+                    : 'opacity-0 -translate-x-8'
+                }`}
+                style={{ transitionDelay: `${index * 120}ms` }}
               >
-                {/* Icon */}
-                <div style={{
-                  flexShrink: 0,
-                  width: "44px",
-                  height: "44px",
-                  border: "1px solid #2A2518",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#C9A84C",
-                  marginTop: "2px",
-                }}>
+                {/* Icon Box */}
+                <div className="flex-shrink-0 w-12 h-12 border border-[#2A2518] flex items-center justify-center text-[#C9A84C] mt-1 hover:border-[#C9A84C] transition-colors">
                   {feature.icon}
                 </div>
 
-                {/* Content */}
+                {/* Text Content */}
                 <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "10px" }}>
-                    <div style={{ width: "20px", height: "1px", backgroundColor: "#C9A84C" }}></div>
-                    <h3 style={{ fontFamily: "Georgia, serif", fontSize: "16px", fontWeight: "300", color: "#E8E0D0", margin: 0, fontStyle: "italic" }}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-5 h-px bg-[#C9A84C]" />
+                    <h3 className="text-[#E8E0D0] text-[17px] font-light italic">
                       {feature.title}
                     </h3>
                   </div>
-                  <p style={{ color: "#5A4A30", fontSize: "14px", lineHeight: "1.8", fontFamily: "Georgia, serif", margin: 0 }}>
+                  <p className="text-[#5A4A30] text-[15px] leading-relaxed font-serif">
                     {feature.description}
                   </p>
                 </div>
@@ -98,53 +94,49 @@ const WhyChooseUs = () => {
           </div>
 
           {/* Right - Visual Card */}
-          <div style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(20px)", transition: "all 0.8s ease 0.4s", position: "relative" }}>
-
+          <div className={`relative transition-all duration-700 delay-300 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          }`}>
+            
             {/* Main Card */}
-            <div style={{ border: "1px solid #2A2518", overflow: "hidden", position: "relative" }}>
-              {/* Gold corner accents */}
-              <div style={{ position: "absolute", top: "-6px", left: "-6px", width: "32px", height: "32px", borderTop: "2px solid #C9A84C", borderLeft: "2px solid #C9A84C", zIndex: 2 }}></div>
-              <div style={{ position: "absolute", bottom: "-6px", right: "-6px", width: "32px", height: "32px", borderBottom: "2px solid #C9A84C", borderRight: "2px solid #C9A84C", zIndex: 2 }}></div>
+            <div className="border border-[#2A2518] overflow-hidden relative bg-[#0D0B08]">
+              {/* Gold Corner Accents */}
+              <div className="absolute -top-2 -left-2 w-9 h-9 border-t-2 border-l-2 border-[#C9A84C] z-10" />
+              <div className="absolute -bottom-2 -right-2 w-9 h-9 border-b-2 border-r-2 border-[#C9A84C] z-10" />
 
-              {/* Header */}
-              <div style={{ backgroundColor: "#13110D", padding: "28px 32px", borderBottom: "1px solid #2A2518", display: "flex", alignItems: "center", gap: "16px" }}>
-                <Scale size={22} color="#C9A84C" />
+              {/* Card Header */}
+              <div className="bg-[#13110D] px-8 py-7 flex items-center gap-4 border-b border-[#2A2518]">
+                <Scale size={26} className="text-[#C9A84C]" />
                 <div>
-                  <h3 style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontWeight: "300", color: "#E8E0D0", margin: 0, fontStyle: "italic" }}>Demo Law Firm</h3>
-                  <p style={{ color: "#5A4A30", fontSize: "11px", letterSpacing: "0.15em", fontFamily: "Arial, sans-serif", margin: "4px 0 0" }}>YOUR TRUSTED LEGAL PARTNER</p>
+                  <h3 className="text-[#E8E0D0] text-xl font-light italic">Demo Law Firm</h3>
+                  <p className="text-[#5A4A30] text-xs tracking-widest mt-1">YOUR TRUSTED LEGAL PARTNER</p>
                 </div>
               </div>
 
-              {/* Image */}
-              <div style={{ position: "relative", height: "320px", overflow: "hidden" }}>
+              {/* Image Section */}
+              <div className="relative h-[340px] md:h-[380px] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop&crop=center"
-                  alt="Professional lawyers in meeting"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", filter: "sepia(30%) brightness(0.7)" }}
+                  src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop"
+                  alt="Legal team in meeting"
+                  className="w-full h-full object-cover filter brightness-75 sepia-[0.2]"
                 />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,8,5,0.8) 0%, transparent 50%)" }}></div>
-                <div style={{ position: "absolute", bottom: "24px", left: "24px" }}>
-                  <p style={{ fontFamily: "Georgia, serif", fontSize: "16px", color: "#E8E0D0", margin: 0, fontStyle: "italic" }}>Professional Legal Services</p>
-                  <p style={{ color: "#8A7A5A", fontSize: "12px", fontFamily: "Arial, sans-serif", letterSpacing: "0.1em", margin: "4px 0 0" }}>EXPERT CONSULTATION & REPRESENTATION</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0805] via-[#0A0805]/70 to-transparent" />
+                
+                <div className="absolute bottom-8 left-8">
+                  <p className="text-[#E8E0D0] text-lg font-light italic">Professional Legal Services</p>
+                  <p className="text-[#8A7A5A] text-xs tracking-widest mt-1">EXPERT CONSULTATION & REPRESENTATION</p>
                 </div>
               </div>
             </div>
 
-            {/* Quote card */}
-            <div style={{
-              position: "absolute",
-              top: "-20px",
-              right: "-20px",
-              backgroundColor: "#13110D",
-              border: "1px solid #2A2518",
-              borderLeft: "2px solid #C9A84C",
-              padding: "20px 24px",
-              maxWidth: "240px",
-            }}>
-              <p style={{ color: "#8A7A5A", fontSize: "12px", fontFamily: "Georgia, serif", fontStyle: "italic", lineHeight: "1.6", margin: "0 0 8px" }}>
+            {/* Floating Quote Card */}
+            <div className="absolute -top-8 -right-4 md:-right-8 bg-[#13110D] border border-[#2A2518] border-l-2 border-l-[#C9A84C] p-6 max-w-[260px] shadow-2xl">
+              <p className="text-[#8A7A5A] text-[13.5px] leading-relaxed font-serif italic">
                 "Prior approval of CCI under Section 31(4) — ensuring legal compliance."
               </p>
-              <span style={{ color: "#C9A84C", fontSize: "10px", letterSpacing: "0.15em", fontFamily: "Arial, sans-serif" }}>LEGAL COMPLIANCE</span>
+              <span className="block mt-4 text-[#C9A84C] text-[10px] tracking-[0.12em] font-medium">
+                LEGAL COMPLIANCE
+              </span>
             </div>
           </div>
         </div>

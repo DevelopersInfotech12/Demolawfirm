@@ -4,217 +4,162 @@ import React from 'react';
 import { Award, BookOpen, Mail, Phone, Linkedin, ArrowRight } from 'lucide-react';
 
 const ExpertAttorneys = () => {
-const attorneys = [
-  {
-    id: 1,
-    name: "Demo 1",
-    title: "Advocate & Insolvency Professional",
-    image: "images/blog4.jpg",
-    specialties: ["Commercial Law", "Banking Law", "Corporate Litigation"],
-    experience: "21+ Years",
-    description: "Leading expert in insolvency and bankruptcy proceedings with extensive experience in corporate restructuring.",
-    contact: {
-      email: "demo1@example.com",
-      phone: "+91-0000000001",
-      linkedin: "#"
+  const attorneys = [
+    {
+      id: 1,
+      name: "Demo 1",
+      title: "Advocate & Insolvency Professional",
+      image: "/images/blog4.jpg",
+      specialties: ["Commercial Law", "Banking Law", "Corporate Litigation"],
+      experience: "21+ Years",
+      description: "Leading expert in insolvency and bankruptcy proceedings with extensive experience in corporate restructuring.",
+      contact: {
+        email: "demo1@example.com",
+        phone: "+91-0000000001",
+        linkedin: "#"
+      }
+    },
+    {
+      id: 2,
+      name: "Demo 2",
+      title: "Advocate",
+      image: "/images/blog4.jpg",
+      specialties: ["Commercial Law", "Banking Law", "Corporate Litigation"],
+      experience: "8+ Years",
+      description: "Specialized in banking and commercial law with a proven track record in high-stakes corporate litigation.",
+      contact: {
+        email: "demo2@example.com",
+        phone: "+91-0000000002",
+        linkedin: "#"
+      }
     }
-  },
-  {
-    id: 2,
-    name: "Demo 2",
-    title: "Advocate",
-    image: "images/blog4.jpg",
-    specialties: ["Commercial Law", "Banking Law", "Corporate Litigation"],
-    experience: "8+ Years",
-    description: "Specialized in banking and commercial law with a proven track record in high-stakes corporate litigation.",
-    contact: {
-      email: "demo2@example.com",
-      phone: "+91-0000000002",
-      linkedin: "#"
-    }
-  }
-];
-  return (
-    <section style={{ backgroundColor: "#0D0B08", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 48px" }}>
+  ];
 
+  return (
+    <section className="bg-[#0D0B08] py-16 md:py-24">
+      <div className="max-w-6xl mx-auto px-6 md:px-8 lg:px-12">
+        
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "72px" }}>
-          <p style={{ color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", fontFamily: "Arial, sans-serif", marginBottom: "20px" }}>
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-[#C9A84C] text-xs md:text-[13px] tracking-[0.25em] font-medium mb-6">
             — THE TEAM
           </p>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "32px", marginBottom: "16px" }}>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "160px" }}></div>
-            <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: "300", color: "#E8E0D0", margin: 0 }}>
-              Meet Our Expert{" "}
-              <span style={{ color: "#C9A84C", fontStyle: "italic" }}>Attorneys</span>
+          
+          <div className="flex items-center justify-center gap-6 mb-4">
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[160px]" />
+            <h2 className="text-[#E8E0D0] font-light text-[clamp(32px,5.5vw,48px)] leading-tight">
+              Meet Our Expert <span className="text-[#C9A84C] italic">Attorneys</span>
             </h2>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "160px" }}></div>
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[160px]" />
           </div>
-          <p style={{ color: "#8A7A5A", fontSize: "14px", maxWidth: "520px", margin: "0 auto", lineHeight: "1.7", fontFamily: "Georgia, serif", fontStyle: "italic" }}>
+
+          <p className="text-[#8A7A5A] text-[15px] max-w-lg mx-auto leading-relaxed font-serif italic">
             Our distinguished legal professionals bring decades of combined experience in complex litigation, corporate law, and specialized legal services.
           </p>
         </div>
 
-        {/* Attorneys Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", backgroundColor: "#2A2518" }}>
+        {/* Attorneys Grid - Responsive */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-[#2A2518]">
           {attorneys.map((attorney) => (
             <div
               key={attorney.id}
-              style={{ backgroundColor: "#0D0B08", padding: "48px 40px", position: "relative" }}
+              className="bg-[#0D0B08] p-8 md:p-12 lg:p-14 group"
             >
-              {/* Top gold line */}
-              <div style={{ width: "32px", height: "2px", backgroundColor: "#C9A84C", marginBottom: "32px" }}></div>
+              {/* Gold Top Accent */}
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-8" />
 
-              {/* Image + name row */}
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "20px", marginBottom: "24px" }}>
-                <div style={{ position: "relative", flexShrink: 0 }}>
-                  <div style={{ width: "80px", height: "80px", overflow: "hidden", border: "1px solid #2A2518" }}>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                {/* Image */}
+                <div className="relative flex-shrink-0 mx-auto md:mx-0">
+                  <div className="w-24 h-24 md:w-28 md:h-28 overflow-hidden border border-[#2A2518]">
                     <img
                       src={attorney.image}
                       alt={attorney.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", filter: "sepia(20%) brightness(0.85)" }}
+                      className="w-full h-full object-cover filter brightness-90 sepia-[0.2]"
                     />
                   </div>
-                  {/* Award badge */}
-                  <div style={{
-                    position: "absolute",
-                    top: "-8px",
-                    right: "-8px",
-                    width: "24px",
-                    height: "24px",
-                    backgroundColor: "#C9A84C",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                    <Award size={12} color="#0D0B08" />
+                  {/* Award Badge */}
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#C9A84C] flex items-center justify-center shadow-lg">
+                    <Award size={16} className="text-[#0D0B08]" />
                   </div>
                 </div>
 
-                <div>
-                  <h3 style={{ fontFamily: "Georgia, serif", fontSize: "22px", fontWeight: "300", color: "#E8E0D0", margin: "0 0 6px", fontStyle: "italic" }}>
+                {/* Info */}
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-[#E8E0D0] text-2xl md:text-3xl font-light italic mb-2">
                     {attorney.name}
                   </h3>
-                  <div style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    padding: "4px 12px",
-                    border: "1px solid #2A2518",
-                    backgroundColor: "#13110D",
-                  }}>
-                    <BookOpen size={10} color="#C9A84C" />
-                    <span style={{ color: "#8A7A5A", fontSize: "10px", letterSpacing: "0.1em", fontFamily: "Arial, sans-serif" }}>{attorney.title}</span>
+                  
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#13110D] border border-[#2A2518] mb-6">
+                    <BookOpen size={14} className="text-[#C9A84C]" />
+                    <span className="text-[#8A7A5A] text-xs tracking-widest font-medium">
+                      {attorney.title}
+                    </span>
+                  </div>
+
+                  {/* Experience */}
+                  <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
+                    <span className="text-[#C9A84C] text-3xl font-light">{attorney.experience}</span>
+                    <div className="h-5 w-px bg-[#2A2518]" />
+                    <span className="text-[#5A4A30] text-xs tracking-[0.15em] uppercase">Experience</span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-[#5A4A30] text-[15px] leading-relaxed font-serif italic mb-8">
+                    {attorney.description}
+                  </p>
+
+                  {/* Specialties */}
+                  <div className="mb-10">
+                    <p className="text-[#3A3020] text-xs tracking-widest mb-3">AREAS OF EXPERTISE</p>
+                    <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                      {attorney.specialties.map((specialty, i) => (
+                        <span
+                          key={i}
+                          className="px-4 py-1.5 text-xs border border-[#2A2518] text-[#8A7A5A]"
+                        >
+                          {specialty}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Experience */}
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-                <span style={{ color: "#C9A84C", fontSize: "20px", fontFamily: "Georgia, serif", fontWeight: "300" }}>{attorney.experience}</span>
-                <div style={{ width: "1px", height: "20px", backgroundColor: "#2A2518" }}></div>
-                <span style={{ color: "#5A4A30", fontSize: "11px", letterSpacing: "0.15em", fontFamily: "Arial, sans-serif" }}>EXPERIENCE</span>
-              </div>
-
-              {/* Description */}
-              <p style={{ color: "#5A4A30", fontSize: "13px", lineHeight: "1.8", fontFamily: "Georgia, serif", fontStyle: "italic", marginBottom: "24px" }}>
-                {attorney.description}
-              </p>
-
-              {/* Specialties */}
-              <div style={{ marginBottom: "28px" }}>
-                <p style={{ color: "#3A3020", fontSize: "10px", letterSpacing: "0.2em", fontFamily: "Arial, sans-serif", marginBottom: "10px" }}>AREAS OF EXPERTISE</p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                  {attorney.specialties.map((s, i) => (
-                    <span key={i} style={{
-                      padding: "4px 12px",
-                      border: "1px solid #2A2518",
-                      color: "#8A7A5A",
-                      fontSize: "11px",
-                      fontFamily: "Arial, sans-serif",
-                      letterSpacing: "0.05em",
-                    }}>
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Contact */}
-              <div style={{ borderTop: "1px solid #2A2518", paddingTop: "24px", display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+              {/* Contact Buttons */}
+              <div className="pt-8 border-t border-[#2A2518] flex flex-wrap gap-4 justify-center md:justify-start">
                 <button
                   onClick={() => window.location.href = `tel:${attorney.contact.phone}`}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    backgroundColor: "#C9A84C",
-                    color: "#0D0B08",
-                    padding: "10px 20px",
-                    fontSize: "11px",
-                    letterSpacing: "0.1em",
-                    fontFamily: "Arial, sans-serif",
-                    fontWeight: "600",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
+                  className="flex items-center gap-3 bg-[#C9A84C] hover:bg-[#B8973E] text-[#0D0B08] px-6 py-3.5 text-xs tracking-widest font-semibold transition-all active:scale-95"
                 >
-                  <Phone size={12} />
+                  <Phone size={16} />
                   {attorney.contact.phone}
-                  <ArrowRight size={12} />
+                  <ArrowRight size={14} />
                 </button>
 
                 <button
                   onClick={() => window.location.href = `mailto:${attorney.contact.email}`}
-                  title={attorney.contact.email}
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    border: "1px solid #2A2518",
-                    backgroundColor: "transparent",
-                    color: "#8A7A5A",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    transition: "border-color 0.2s, color 0.2s",
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = "#C9A84C"; e.currentTarget.style.color = "#C9A84C"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "#2A2518"; e.currentTarget.style.color = "#8A7A5A"; }}
+                  className="w-12 h-12 border border-[#2A2518] hover:border-[#C9A84C] text-[#8A7A5A] hover:text-[#C9A84C] flex items-center justify-center transition-all"
                 >
-                  <Mail size={14} />
+                  <Mail size={18} />
                 </button>
 
                 <a
                   href={attorney.contact.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="LinkedIn Profile"
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    border: "1px solid #2A2518",
-                    color: "#8A7A5A",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    textDecoration: "none",
-                    transition: "border-color 0.2s, color 0.2s",
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = "#C9A84C"; e.currentTarget.style.color = "#C9A84C"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "#2A2518"; e.currentTarget.style.color = "#8A7A5A"; }}
+                  className="w-12 h-12 border border-[#2A2518] hover:border-[#C9A84C] text-[#8A7A5A] hover:text-[#C9A84C] flex items-center justify-center transition-all"
                 >
-                  <Linkedin size={14} />
+                  <Linkedin size={18} />
                 </a>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom decoration */}
-        <div style={{ marginTop: "64px", display: "flex", justifyContent: "center" }}>
-          <div style={{ height: "1px", backgroundColor: "#2A2518", width: "100%", maxWidth: "400px" }}></div>
+        {/* Bottom Decoration */}
+        <div className="mt-16 flex justify-center">
+          <div className="h-px bg-[#2A2518] w-full max-w-md" />
         </div>
       </div>
     </section>

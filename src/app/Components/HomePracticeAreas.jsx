@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Building, Users, DollarSign, GraduationCap, ArrowRight } from 'lucide-react';
 
@@ -13,178 +15,90 @@ const HomePracticeAreas = () => {
       id: 2,
       icon: Users,
       title: "Banking Law",
-      description: "Our team at Demo Law Firm has deep knowledge of SARFAESI & Recovery of Debts and Bankruptcy Act. We represent Banks with extensive expertise in financial regulations.",
+      description: "Deep expertise in SARFAESI, Recovery of Debts and Bankruptcy Act. We represent banks and financial institutions with strong regulatory knowledge.",
     },
     {
       id: 3,
       icon: DollarSign,
-      title: "Commercial, Corporate and Companies Law",
-      description: "Demo Law Firm provides comprehensive legal services in Commercial & Corporate Law, representing clients across various forums with specialized expertise in business transactions.",
+      title: "Commercial, Corporate & Companies Law",
+      description: "Comprehensive legal services in corporate transactions, business agreements, and company law matters across various forums.",
     },
     {
       id: 4,
       icon: GraduationCap,
       title: "Arbitration Law",
-      description: "Our team handles all aspects of Arbitration Law, from drafting agreements to representing clients in arbitral proceedings, including enforcement of awards in domestic and international matters.",
+      description: "End-to-end arbitration services — from drafting agreements to representation in domestic and international arbitral proceedings.",
     }
   ];
 
   return (
-    <section style={{ backgroundColor: "#0D0B08", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 48px" }}>
-
+    <section className="bg-[#0D0B08] py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "72px" }}>
-          <p style={{
-            color: "#C9A84C",
-            fontSize: "11px",
-            letterSpacing: "0.25em",
-            fontFamily: "Arial, sans-serif",
-            marginBottom: "20px",
-          }}>
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-[#C9A84C] text-xs md:text-[13px] tracking-[0.25em] font-medium mb-6">
             — AREAS OF PRACTICE
           </p>
 
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "32px", marginBottom: "16px" }}>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "160px" }}></div>
-            <h2 style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: "300",
-              color: "#E8E0D0",
-              margin: 0,
-              lineHeight: "1.1",
-            }}>
+          <div className="flex items-center justify-center gap-6 mb-4">
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[160px]" />
+            <h2 className="text-[#E8E0D0] font-light text-[clamp(32px,5.5vw,48px)] leading-tight">
               Our Practice Areas
             </h2>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "160px" }}></div>
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[160px]" />
           </div>
 
-          <p style={{
-            color: "#5A4A30",
-            fontSize: "15px",
-            fontFamily: "Georgia, serif",
-            fontStyle: "italic",
-            marginTop: "4px",
-          }}>
-            Field of Work
-          </p>
-
-          <p style={{
-            color: "#8A7A5A",
-            fontSize: "14px",
-            maxWidth: "520px",
-            margin: "16px auto 0",
-            lineHeight: "1.7",
-            fontFamily: "Georgia, serif",
-          }}>
+          <p className="text-[#5A4A30] text-lg italic font-serif">Field of Work</p>
+          
+          <p className="text-[#8A7A5A] text-[15px] max-w-md mx-auto mt-4 leading-relaxed font-serif">
             Experience the difference that comes with choosing a law firm dedicated to excellence, integrity, and results.
           </p>
         </div>
 
-        {/* Practice Areas Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "#2A2518" }}>
-          {practiceAreas.map((area) => {
+        {/* Practice Areas Grid - Responsive */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#2A2518]">
+          {practiceAreas.map((area, index) => {
             const IconComponent = area.icon;
             return (
               <div
                 key={area.id}
-                style={{
-                  backgroundColor: "#0D0B08",
-                  padding: "40px 32px",
-                  position: "relative",
-                  cursor: "default",
-                  transition: "background-color 0.3s",
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.backgroundColor = "#13110D";
-                  e.currentTarget.querySelector('.gold-line').style.width = "48px";
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.backgroundColor = "#0D0B08";
-                  e.currentTarget.querySelector('.gold-line').style.width = "24px";
-                }}
+                className="group bg-[#0D0B08] p-8 md:p-10 hover:bg-[#13110D] transition-all duration-300 flex flex-col h-full"
               >
                 {/* Icon */}
-                <div style={{
-                  width: "48px",
-                  height: "48px",
-                  border: "1px solid #2A2518",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "24px",
-                  color: "#C9A84C",
-                }}>
-                  <IconComponent size={20} />
+                <div className="w-14 h-14 border border-[#2A2518] group-hover:border-[#C9A84C] flex items-center justify-center text-[#C9A84C] transition-colors mb-8">
+                  <IconComponent size={24} />
                 </div>
 
-                {/* Gold accent line */}
-                <div
-                  className="gold-line"
-                  style={{
-                    height: "1px",
-                    backgroundColor: "#C9A84C",
-                    width: "24px",
-                    marginBottom: "20px",
-                    transition: "width 0.3s ease",
-                  }}
-                ></div>
+                {/* Gold Accent Line */}
+                <div className="h-px w-6 bg-[#C9A84C] group-hover:w-12 transition-all duration-300 mb-6" />
 
                 {/* Title */}
-                <h3 style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                  fontSize: "16px",
-                  fontWeight: "300",
-                  color: "#E8E0D0",
-                  marginBottom: "16px",
-                  lineHeight: "1.4",
-                  fontStyle: "italic",
-                }}>
+                <h3 className="text-[#E8E0D0] text-[17px] leading-tight font-light italic mb-5">
                   {area.title}
                 </h3>
 
                 {/* Description */}
-                <p style={{
-                  color: "#5A4A30",
-                  fontSize: "13px",
-                  lineHeight: "1.8",
-                  fontFamily: "Georgia, serif",
-                  marginBottom: "28px",
-                }}>
+                <p className="text-[#5A4A30] text-[14.5px] leading-relaxed font-serif flex-grow">
                   {area.description}
                 </p>
 
                 {/* Learn More */}
                 <a
                   href="#"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    color: "#C9A84C",
-                    fontSize: "10px",
-                    letterSpacing: "0.2em",
-                    fontFamily: "Arial, sans-serif",
-                    textDecoration: "none",
-                    borderBottom: "1px solid #2A2518",
-                    paddingBottom: "2px",
-                    transition: "border-color 0.2s",
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = "#C9A84C"}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = "#2A2518"}
+                  className="inline-flex items-center gap-2 text-[#C9A84C] text-xs tracking-[0.2em] font-medium mt-8 group-hover:gap-3 transition-all border-b border-transparent hover:border-[#C9A84C] pb-1 w-fit"
                 >
                   LEARN MORE
-                  <ArrowRight size={12} />
+                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom decoration */}
-        <div style={{ marginTop: "64px", display: "flex", justifyContent: "center" }}>
-          <div style={{ height: "1px", backgroundColor: "#2A2518", width: "100%", maxWidth: "400px" }}></div>
+        {/* Bottom Decoration */}
+        <div className="mt-16 flex justify-center">
+          <div className="h-px bg-[#2A2518] w-full max-w-md" />
         </div>
       </div>
     </section>

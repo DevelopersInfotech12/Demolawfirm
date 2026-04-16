@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Scale, Users, Award, BookOpen, ArrowRight, Star, CheckCircle, Shield, Gavel, TrendingUp } from 'lucide-react';
+import { Scale, Shield, Gavel, TrendingUp } from 'lucide-react';
 
 const LearnAbout = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,182 +12,95 @@ const LearnAbout = () => {
   }, []);
 
   const features = [
-    { icon: <Scale size={18} />, title: 'IBC & Restructuring Experts', desc: 'Proven excellence in insolvency' },
-    { icon: <Shield size={18} />, title: 'Strategic Litigation Practice', desc: 'Supreme Court and NCLTs' },
-    { icon: <Gavel size={18} />, title: 'Focused Expertise', desc: 'Demo Law Firm, personalized strategies' },
-    { icon: <TrendingUp size={18} />, title: 'Client-Centric Solutions', desc: 'Business-driven, pragmatic advice' }
+    { icon: <Scale size={20} />, title: 'IBC & Restructuring Experts', desc: 'Proven excellence in insolvency' },
+    { icon: <Shield size={20} />, title: 'Strategic Litigation Practice', desc: 'Supreme Court and NCLTs' },
+    { icon: <Gavel size={20} />, title: 'Focused Expertise', desc: 'Personalized strategies' },
+    { icon: <TrendingUp size={20} />, title: 'Client-Centric Solutions', desc: 'Business-driven advice' }
   ];
 
   return (
-    <section style={{ backgroundColor: "#0D0B08", padding: "100px 0", overflow: "hidden" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 48px" }}>
-
+    <section className="bg-[#0D0B08] py-16 md:py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+        
         {/* Header */}
-        <div style={{
-          textAlign: "center",
-          marginBottom: "72px",
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? "translateY(0)" : "translateY(20px)",
-          transition: "all 0.8s ease",
-        }}>
-          {/* Eyebrow */}
-          <p style={{
-            color: "#C9A84C",
-            fontSize: "11px",
-            letterSpacing: "0.25em",
-            fontFamily: "Arial, sans-serif",
-            marginBottom: "20px",
-          }}>
+        <div 
+          className={`text-center mb-16 md:mb-20 transition-all duration-800 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
+          <p className="text-[#C9A84C] text-xs md:text-[13px] tracking-[0.25em] font-medium mb-6">
             — TRUSTED LEGAL EXCELLENCE
           </p>
 
-          {/* Divider line + heading */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "32px", marginBottom: "16px" }}>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "200px" }}></div>
-            <h2 style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              fontSize: "clamp(36px, 4vw, 52px)",
-              fontWeight: "300",
-              color: "#E8E0D0",
-              margin: 0,
-              lineHeight: "1.1",
-            }}>
-              Why{" "}
-              <span style={{ color: "#C9A84C", fontStyle: "italic" }}>Demo Law Firm</span>
-              {"?"}
+          <div className="flex items-center justify-center gap-6 md:gap-8 mb-4">
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[180px]" />
+            <h2 className="text-[#E8E0D0] font-light text-[clamp(32px,5.5vw,52px)] leading-tight">
+              Why <span className="text-[#C9A84C] italic">Demo Law Firm</span>?
             </h2>
-            <div style={{ height: "1px", backgroundColor: "#2A2518", flex: 1, maxWidth: "200px" }}></div>
+            <div className="h-px bg-[#2A2518] flex-1 max-w-[180px]" />
           </div>
 
-          <p style={{
-            color: "#5A4A30",
-            fontSize: "15px",
-            maxWidth: "540px",
-            margin: "0 auto",
-            lineHeight: "1.7",
-            fontFamily: "Georgia, serif",
-            fontStyle: "italic",
-          }}>
+          <p className="text-[#5A4A30] text-[15px] md:text-base max-w-xl mx-auto leading-relaxed font-serif italic">
             Specialized in IBC, corporate restructuring, and strategic litigation with precision, integrity, and outcome-oriented advocacy
           </p>
         </div>
 
-        {/* Two-column layout */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}>
-
-          {/* Left - Image */}
-          <div style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateX(0)" : "translateX(-20px)",
-            transition: "all 0.8s ease 0.3s",
-            position: "relative",
-          }}>
-            <div style={{
-              position: "relative",
-              border: "1px solid #2A2518",
-            }}>
-              {/* Gold accent top-left corner */}
-              <div style={{
-                position: "absolute",
-                top: "-8px",
-                left: "-8px",
-                width: "40px",
-                height: "40px",
-                borderTop: "2px solid #C9A84C",
-                borderLeft: "2px solid #C9A84C",
-                zIndex: 2,
-              }}></div>
-              {/* Gold accent bottom-right corner */}
-              <div style={{
-                position: "absolute",
-                bottom: "-8px",
-                right: "-8px",
-                width: "40px",
-                height: "40px",
-                borderBottom: "2px solid #C9A84C",
-                borderRight: "2px solid #C9A84C",
-                zIndex: 2,
-              }}></div>
+        {/* Two Column Layout - Stacks on mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Left - Image Section */}
+          <div className={`relative transition-all duration-800 delay-200 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+          }`}>
+            
+            <div className="relative border border-[#2A2518] aspect-[4/4] md:aspect-square overflow-hidden">
+              {/* Gold corner accents */}
+              <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-[#C9A84C] z-10" />
+              <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-[#C9A84C] z-10" />
 
               <img
                 src="/images/img1.jpg"
                 alt="Demo Law Firm Team"
-                style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "cover", display: "block", filter: "sepia(20%) brightness(0.85)" }}
+                className="w-full h-full object-cover filter brightness-90 sepia-[0.15]"
               />
 
-              {/* Years badge */}
-              <div style={{
-                position: "absolute",
-                bottom: "-24px",
-                left: "-24px",
-                backgroundColor: "#C9A84C",
-                padding: "16px 20px",
-                textAlign: "center",
-              }}>
-                <div style={{ fontSize: "28px", fontWeight: "700", color: "#0D0B08", fontFamily: "Georgia, serif", lineHeight: 1 }}>21+</div>
-                <div style={{ fontSize: "10px", color: "#0D0B08", letterSpacing: "0.15em", fontFamily: "Arial, sans-serif", marginTop: "4px" }}>YEARS</div>
+              {/* Years Badge */}
+              <div className="absolute -bottom-6 -left-6 bg-[#C9A84C] px-7 py-5 text-center shadow-xl">
+                <div className="text-4xl md:text-5xl font-bold text-[#0D0B08] leading-none">21+</div>
+                <div className="text-[10px] md:text-xs font-medium tracking-widest text-[#0D0B08] mt-1">YEARS</div>
               </div>
             </div>
           </div>
 
           {/* Right - Content */}
-          <div style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateX(0)" : "translateX(20px)",
-            transition: "all 0.8s ease 0.5s",
-          }}>
-            <p style={{
-              color: "#8A7A5A",
-              fontSize: "15px",
-              lineHeight: "1.8",
-              fontFamily: "Georgia, serif",
-              marginBottom: "20px",
-            }}>
-              <span style={{ color: "#C9A84C", fontStyle: "italic", fontSize: "18px" }}>Demo Law Firm</span>{" "}
-              is a law firm specializing in Insolvency and Bankruptcy Code (IBC), corporate restructuring, and commercial litigation. Our seasoned advocates combine strategic insight with deep legal acumen to deliver tailored, results-driven solutions across the Supreme Court, High Courts, NCLTs, and Tribunals.
-            </p>
+          <div className={`transition-all duration-800 delay-400 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          }`}>
+            
+            <div className="space-y-8 text-[#8A7A5A]">
+              <p className="text-[15.5px] leading-relaxed">
+                <span className="text-[#C9A84C] italic font-medium">Demo Law Firm</span> is a specialized law firm focused on Insolvency and Bankruptcy Code (IBC), corporate restructuring, and high-stakes commercial litigation. 
+              </p>
 
-            <p style={{
-              color: "#8A7A5A",
-              fontSize: "15px",
-              lineHeight: "1.8",
-              fontFamily: "Georgia, serif",
-              marginBottom: "40px",
-            }}>
-              We are known for our focused expertise in IBC and restructuring matters, offering personalized legal strategies backed by our strong presence before the Supreme Court and NCLTs.
-            </p>
+              <p className="text-[15.5px] leading-relaxed">
+                Our experienced advocates deliver strategic, results-driven solutions before the Supreme Court, High Courts, NCLTs, and various Tribunals.
+              </p>
+            </div>
 
             {/* Features Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
               {features.map((feature, index) => (
-                <div key={index} style={{
-                  padding: "20px",
-                  border: "1px solid #2A2518",
-                  backgroundColor: "#13110D",
-                  transition: "border-color 0.2s",
-                  cursor: "default",
-                }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = "#C9A84C"}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = "#2A2518"}
+                <div
+                  key={index}
+                  className="group p-7 bg-[#13110D] border border-[#2A2518] hover:border-[#C9A84C] transition-all duration-300 hover:bg-[#1A170F]"
                 >
-                  <div style={{ color: "#C9A84C", marginBottom: "12px" }}>{feature.icon}</div>
-                  <h4 style={{
-                    color: "#E8E0D0",
-                    fontSize: "13px",
-                    fontFamily: "Arial, sans-serif",
-                    letterSpacing: "0.05em",
-                    marginBottom: "6px",
-                    fontWeight: "500",
-                  }}>
+                  <div className="text-[#C9A84C] mb-4 group-hover:scale-110 transition-transform">
+                    {feature.icon}
+                  </div>
+                  <h4 className="text-[#E8E0D0] font-medium text-[14.5px] tracking-wide mb-2">
                     {feature.title}
                   </h4>
-                  <p style={{
-                    color: "#5A4A30",
-                    fontSize: "12px",
-                    fontFamily: "Georgia, serif",
-                    fontStyle: "italic",
-                    margin: 0,
-                  }}>
+                  <p className="text-[#5A4A30] text-sm font-serif italic">
                     {feature.desc}
                   </p>
                 </div>

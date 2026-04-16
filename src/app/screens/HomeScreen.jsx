@@ -10,21 +10,41 @@ import ExpertAttorneys from '../Components/ExpertAttornery';
 import Faq from '../Components/Faq';
 import Footer from '../Components/Footer';
 import AmendmentBanner from '../Components/AmendmentBanner';
-// import Navbar from '../app/Components/Navbar'
-
 
 const HomeScreen = () => {
     return (
         <div className="min-h-screen">
-            <Navbar/>
-            <Hero/>
-            <LearnAbout/>
-            <HomePracticeAreas/>
-            <WhyChooseUs/>
-            <ExpertAttorneys/>
-            <AmendmentBanner/>
-            <Faq/>
-            <Footer/>
+            <Navbar />
+
+            {/* === ADD IDs HERE === */}
+            <section id="hero">
+                <Hero />
+            </section>
+
+            <section id="about">
+                <LearnAbout />
+            </section>
+
+            <section id="why-choose-us">
+                <WhyChooseUs />
+            </section>
+
+            <section id="expertise">
+                <HomePracticeAreas />
+            </section>
+
+            <section id="team">
+                <ExpertAttorneys />
+            </section>
+
+            <section id="faq">
+                <Faq />
+            </section>
+
+            <section id="contact">
+                <Footer />
+            </section>
+
         </div>
     )
 }

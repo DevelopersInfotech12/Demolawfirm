@@ -1,330 +1,143 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Menu, X, Phone } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("HOME");
-  const [activeDropdown, setActiveDropdown] = useState(null);
-  const dropdownRef = useRef(null);
-  const aboutDropdownRef = useRef(null);
   const router = useRouter();
+  const pathname = usePathname();
+
+  const isHomePage = pathname === "/";
 
   const navItems = [
-    { name: "HOME", href: "/" },
-    { name: "ABOUT US", href: "/about", hasDropdown: true },
-    { name: "EXPERTISE", href: "#", hasDropdown: true },
-    { name: "OUR TEAM", href: "/ourpeople" },
-    { name: "CAREERS", href: "/careers" },
-    { name: "CONTACT US", href: "/contactus" },
+    { name: "HOME", href: "/", sectionId: "hero" },
+    { name: "ABOUT US", href: "/about", sectionId: "about" },
+    { name: "EXPERTISE", href: "/expertise", sectionId: "expertise" },
+    { name: "OUR TEAM", href: "/ourpeople", sectionId: "team" },
+    { name: "FAQ", href: "/faq", sectionId: "faq" },
+    { name: "CONTACT US", href: "/contactus", sectionId: "contact" },
   ];
 
-  const aboutDropdownItems = [
-    { name: "Our Attorneys", href: "/attorneys" },
-    { name: "Asterisms Legal", href: "/about" }
-  ];
-
-  const practiceAreaItems = [
-    { name: "Insolvency and Bankruptcy", href: "/bankruptcyandInsolvency" },
-    { name: "Banking Law", href: "/bankinglaw" },
-    { name: "Commercial, Corporate & Company Law", href: "/commercialandcorporate" },
-    { name: "Matrimonial / Family Law", href: "/familylaw" },
-    { name: "Criminal", href: "/criminallaw" },
-    { name: "Civil", href: "/civillaw" },
-    { name: "Arbitration", href: "/companieslaw" }
-  ];
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      const isDesktop = window.innerWidth >= 1024;
-      if (isDesktop) {
-        const clickedInside =
-          (dropdownRef.current && dropdownRef.current.contains(event.target)) ||
-          (aboutDropdownRef.current && aboutDropdownRef.current.contains(event.target));
-        if (!clickedInside) setActiveDropdown(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const toggleDropdown = (menuName, e) => {
-    e.preventDefault();
-    setActiveDropdown(activeDropdown === menuName ? null : menuName);
-    setActiveTab(menuName);
+  const scrollToSection = (sectionId) => {
+    if (!sectionId) return;
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 80;
+      const y = element.getBoundingClientRect().top + window.scrollY - navbarHeight;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   };
 
-  const handleDropdownItemClick = (href) => {
-    setActiveDropdown(null);
+  const handleNavClick = (item) => {
     setIsMenuOpen(false);
-    router.push(href);
+    if (isHomePage && item.sectionId) {
+      scrollToSection(item.sectionId);
+    } else {
+      router.push(item.href);
+    }
   };
 
-  const handleNavItemClick = (itemName) => {
-    setActiveTab(itemName);
-    setActiveDropdown(null);
-  };
-
-  const getDropdownItems = (menuName) => {
-    if (menuName === "ABOUT US") return aboutDropdownItems;
-    if (menuName === "EXPERTISE") return practiceAreaItems;
-    return [];
-  };
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
-    <div className="w-full">
-      {/* Top tagline bar */}
-      {/* <div style={{ backgroundColor: "#0D0B08", borderBottom: "1px solid #2A2518" }}>
-        <div className="max-w-8xl mx-auto px-8">
-          <p style={{ color: "#8A7A5A", fontSize: "11px", letterSpacing: "0.15em", padding: "8px 0" }}>
-            — ASTERISMS LAW FIRM · NEW DELHI
-          </p>
-        </div>
-      </div> */}
-
-      <nav style={{ backgroundColor: "#0D0B08", borderBottom: "1px solid #2A2518" }}>
+    <div className="w-full sticky top-0 z-50">
+      <nav className="bg-[#0D0B08] border-b border-[#2A2518]">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
 
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 flex items-center">
-              <div className="flex flex-col items-center cursor-pointer">
-                <Image
-                  src="/images/logo.png"
-                  alt="Asterisms Legal Logo"
-                  width={160}
-                  height={360}
-                  className="rounded-md"
-                />
-              </div>
+            <Link href="/" className="flex-shrink-0 py-2">
+              <Image
+                src="/images/logonew.png"
+                alt="Asterisms Legal"
+                width={150}
+                height={90}
+                className="cursor-pointer w-[140px] sm:w-[155px] lg:w-[160px] h-auto"
+                priority
+              />
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
-              {navItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative"
-                  ref={item.name === "EXPERTISE" ? dropdownRef : item.name === "ABOUT US" ? aboutDropdownRef : null}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavClick(item)}
+                  className="text-[#A89880] text-[11.5px] tracking-[0.12em] font-medium py-2 px-3 hover:text-[#C9A84C] transition-colors duration-200"
                 >
-                  {item.hasDropdown ? (
-                    <button
-                      onClick={(e) => toggleDropdown(item.name, e)}
-                      style={{
-                        color: activeDropdown === item.name ? "#C9A84C" : "#A89880",
-                        backgroundColor: "transparent",
-                        border: "none",
-                        fontSize: "11px",
-                        letterSpacing: "0.12em",
-                        fontWeight: "500",
-                        padding: "8px 16px",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "6px",
-                        transition: "color 0.2s",
-                      }}
-                      onMouseEnter={e => e.currentTarget.style.color = "#C9A84C"}
-                      onMouseLeave={e => { if (activeDropdown !== item.name) e.currentTarget.style.color = "#A89880"; }}
-                    >
-                      {item.name}
-                      <ChevronDown
-                        style={{
-                          width: "12px",
-                          height: "12px",
-                          color: "#C9A84C",
-                          transform: activeDropdown === item.name ? "rotate(180deg)" : "rotate(0deg)",
-                          transition: "transform 0.2s"
-                        }}
-                      />
-                    </button>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      onClick={() => handleNavItemClick(item.name)}
-                      style={{
-                        color: activeTab === item.name ? "#C9A84C" : "#A89880",
-                        fontSize: "11px",
-                        letterSpacing: "0.12em",
-                        fontWeight: "500",
-                        padding: "8px 16px",
-                        textDecoration: "none",
-                        display: "block",
-                        transition: "color 0.2s",
-                      }}
-                      onMouseEnter={e => e.currentTarget.style.color = "#C9A84C"}
-                      onMouseLeave={e => { if (activeTab !== item.name) e.currentTarget.style.color = "#A89880"; }}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-
-                  {item.hasDropdown && activeDropdown === item.name && (
-                    <div style={{
-                      position: "absolute",
-                      top: "100%",
-                      left: "0",
-                      marginTop: "8px",
-                      backgroundColor: "#13110D",
-                      border: "1px solid #2A2518",
-                      borderTop: "2px solid #C9A84C",
-                      padding: "8px 0",
-                      zIndex: 50,
-                      minWidth: "220px",
-                    }}>
-                      {getDropdownItems(item.name).map((dropdownItem, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => handleDropdownItemClick(dropdownItem.href)}
-                          style={{
-                            display: "block",
-                            width: "100%",
-                            textAlign: "left",
-                            padding: "10px 20px",
-                            fontSize: "11px",
-                            letterSpacing: "0.1em",
-                            color: "#A89880",
-                            background: "transparent",
-                            border: "none",
-                            cursor: "pointer",
-                            transition: "color 0.2s, background 0.2s",
-                          }}
-                          onMouseEnter={e => { e.currentTarget.style.color = "#C9A84C"; e.currentTarget.style.backgroundColor = "#1A1814"; }}
-                          onMouseLeave={e => { e.currentTarget.style.color = "#A89880"; e.currentTarget.style.backgroundColor = "transparent"; }}
-                        >
-                          {dropdownItem.name}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  {item.name}
+                </button>
               ))}
             </div>
 
-            {/* CTA */}
-            <Link href="/contactus" className="hidden lg:block">
-              <button
-                style={{
-                  backgroundColor: "#C9A84C",
-                  color: "#0D0B08",
-                  padding: "10px 28px",
-                  fontSize: "11px",
-                  letterSpacing: "0.15em",
-                  fontWeight: "600",
-                  border: "none",
-                  cursor: "pointer",
-                  transition: "background-color 0.2s",
-                }}
-                onMouseEnter={e => e.currentTarget.style.backgroundColor = "#B8973E"}
-                onMouseLeave={e => e.currentTarget.style.backgroundColor = "#C9A84C"}
-              >
-                GET CONSULTATION
-              </button>
-            </Link>
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-6">
+              <Link href="/contactus" className="group">
+                <button className="bg-[#C9A84C] hover:bg-[#B8973E] text-[#0D0B08] px-5 py-3 text-xs font-semibold tracking-[0.15em] transition-all duration-200 flex flex-col items-center rounded-sm">
+                  GET CONSULTATION
+                  <span className="text-[13px] font-medium mt-0.5 tracking-wider">
+                    +91-0000000001
+                  </span>
+                </button>
+              </Link>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              style={{ color: "#A89880", background: "transparent", border: "1px solid #2A2518", padding: "8px" }}
-              className="lg:hidden"
+              className="lg:hidden p-3 text-[#A89880] hover:text-[#C9A84C] transition-colors"
+              aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div style={{ backgroundColor: "#0D0B08", borderTop: "2px solid #C9A84C", padding: "24px" }}>
-            {navItems.map((item, idx) => (
-              <div key={idx} style={{ marginBottom: "4px" }}>
-                {item.hasDropdown ? (
-                  <>
-                    <button
-                      onClick={(e) => toggleDropdown(item.name, e)}
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        padding: "14px 16px",
-                        fontSize: "11px",
-                        letterSpacing: "0.12em",
-                        color: activeDropdown === item.name ? "#C9A84C" : "#A89880",
-                        background: "transparent",
-                        border: "1px solid #2A2518",
-                        cursor: "pointer",
-                      }}
-                    >
-                      {item.name}
-                      <ChevronDown style={{ width: "12px", height: "12px", color: "#C9A84C", transform: activeDropdown === item.name ? "rotate(180deg)" : "rotate(0)" }} />
-                    </button>
-                    {activeDropdown === item.name && (
-                      <div style={{ marginLeft: "16px", marginTop: "4px" }}>
-                        {getDropdownItems(item.name).map((dropdownItem, i) => (
-                          <button
-                            key={i}
-                            onClick={() => handleDropdownItemClick(dropdownItem.href)}
-                            style={{
-                              display: "block",
-                              width: "100%",
-                              textAlign: "left",
-                              padding: "10px 16px",
-                              fontSize: "11px",
-                              letterSpacing: "0.1em",
-                              color: "#8A7A5A",
-                              background: "transparent",
-                              border: "none",
-                              cursor: "pointer",
-                            }}
-                          >
-                            {dropdownItem.name}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <Link
-                    href={item.href}
-                    onClick={() => { handleNavItemClick(item.name); setIsMenuOpen(false); }}
-                    style={{
-                      display: "block",
-                      padding: "14px 16px",
-                      fontSize: "11px",
-                      letterSpacing: "0.12em",
-                      color: activeTab === item.name ? "#C9A84C" : "#A89880",
-                      border: "1px solid #2A2518",
-                      textDecoration: "none",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
-            <Link href="/contactus" style={{ display: "block", marginTop: "16px" }}>
-              <button style={{
-                width: "100%",
-                backgroundColor: "#C9A84C",
-                color: "#0D0B08",
-                padding: "14px",
-                fontSize: "11px",
-                letterSpacing: "0.15em",
-                fontWeight: "600",
-                border: "none",
-                cursor: "pointer",
-              }}>
-                GET CONSULTATION
+        {/* Mobile Menu - Slide Down Animation */}
+        <div
+          className={`lg:hidden bg-[#0D0B08] border-t border-[#C9A84C] overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="px-6 py-8 space-y-2">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => handleNavClick(item)}
+                className="block w-full text-left px-6 py-5 text-base font-medium text-[#A89880] hover:bg-[#1F1B14] hover:text-[#C9A84C] transition-all border border-transparent hover:border-[#2A2518] rounded-lg active:scale-[0.985]"
+              >
+                {item.name}
               </button>
-            </Link>
+            ))}
+
+            {/* Mobile Contact Section */}
+            <div className="pt-8 border-t border-[#2A2518]">
+              <a
+                href="tel:+910000000001"
+                className="flex items-center gap-3 text-[#C9A84C] py-4 px-6 bg-[#1F1B14] rounded-lg mb-4 hover:bg-[#2A2518] transition-colors"
+              >
+                <Phone size={22} />
+                <div>
+                  <p className="text-sm text-[#A89880]">Call us directly</p>
+                  <p className="font-semibold text-lg">+91-0000000001</p>
+                </div>
+              </a>
+
+              <Link href="/contactus" className="block">
+                <button className="w-full bg-[#C9A84C] hover:bg-[#B8973E] text-[#0D0B08] py-5 font-semibold tracking-widest text-base rounded-sm transition-all active:scale-[0.985]">
+                  GET CONSULTATION
+                </button>
+              </Link>
+            </div>
           </div>
-        )}
+        </div>
       </nav>
     </div>
   );
