@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Asterisms Legal",
+  title: "Demo Law Firm",
   description: "Your site description here",
   icons: {
     icon: "/icon.png"
