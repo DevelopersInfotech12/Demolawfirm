@@ -15,7 +15,7 @@ export const metadata = {
   title: "Demo Law Firm",
   description: "Your site description here",
   icons: {
-    icon: "/icon.png"
+    icon: "/logonew.png"
   },
 };
 
